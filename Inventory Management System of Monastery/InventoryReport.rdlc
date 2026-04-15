@@ -1,0 +1,344 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+	<DataSources>
+		<DataSource Name="DataSource1">
+			<ConnectionProperties>
+				<DataProvider>System.Data.DataSet</DataProvider>
+				<ConnectString />
+			</ConnectionProperties>
+		</DataSource>
+	</DataSources>
+	<DataSets>
+		<DataSet Name="DataSet1">
+			<Fields>
+				<Field Name="product_name">
+					<DataField>product_name</DataField>
+				</Field>
+				<Field Name="category_name">
+					<DataField>category_name</DataField>
+				</Field>
+				<Field Name="current_stock">
+					<DataField>current_stock</DataField>
+				</Field>
+				<Field Name="low_stock_threshold">
+					<DataField>low_stock_threshold</DataField>
+				</Field>
+				<Field Name="total_sold">
+					<DataField>total_sold</DataField>
+				</Field>
+				<Field Name="total_purchased">
+					<DataField>total_purchased</DataField>
+				</Field>
+				<Field Name="stock_status">
+					<DataField>stock_status</DataField>
+				</Field>
+			</Fields>
+			<Query>
+				<DataSourceName>DataSource1</DataSourceName>
+				<CommandText />
+			</Query>
+		</DataSet>
+	</DataSets>
+	<ReportParameters>
+		<ReportParameter Name="ReportTitle">
+			<DataType>String</DataType>
+			<DefaultValue>
+				<Values>
+					<Value>Inventory Summary Report</Value>
+				</Values>
+			</DefaultValue>
+		</ReportParameter>
+		<ReportParameter Name="StartDate">
+			<DataType>String</DataType>
+			<DefaultValue>
+				<Values>
+					<Value />
+				</Values>
+			</DefaultValue>
+		</ReportParameter>
+		<ReportParameter Name="EndDate">
+			<DataType>String</DataType>
+			<DefaultValue>
+				<Values>
+					<Value />
+				</Values>
+			</DefaultValue>
+		</ReportParameter>
+	</ReportParameters>
+	<Body>
+		<ReportItems>
+			<Textbox Name="txtTitle">
+				<Value>=Parameters!ReportTitle.Value</Value>
+				<Top>0in</Top>
+				<Left>0in</Left>
+				<Width>7in</Width>
+				<Height>0.3in</Height>
+				<Style>
+					<FontSize>14pt</FontSize>
+					<FontWeight>Bold</FontWeight>
+					<TextAlign>Center</TextAlign>
+				</Style>
+			</Textbox>
+			<Textbox Name="txtDate">
+				<Value>="Period: " &amp; Parameters!StartDate.Value &amp; " - " &amp; Parameters!EndDate.Value</Value>
+				<Top>0.3in</Top>
+				<Left>0in</Left>
+				<Width>7in</Width>
+				<Height>0.25in</Height>
+				<Style>
+					<FontSize>9pt</FontSize>
+					<TextAlign>Center</TextAlign>
+				</Style>
+			</Textbox>
+			<Tablix Name="InventoryTable">
+				<TablixBody>
+					<TablixColumns>
+						<TablixColumn>
+							<Width>1.5in</Width>
+						</TablixColumn>
+						<TablixColumn>
+							<Width>1in</Width>
+						</TablixColumn>
+						<TablixColumn>
+							<Width>1in</Width>
+						</TablixColumn>
+						<TablixColumn>
+							<Width>1in</Width>
+						</TablixColumn>
+						<TablixColumn>
+							<Width>1in</Width>
+						</TablixColumn>
+						<TablixColumn>
+							<Width>1in</Width>
+						</TablixColumn>
+						<TablixColumn>
+							<Width>1in</Width>
+						</TablixColumn>
+					</TablixColumns>
+					<TablixRows>
+						<TablixRow>
+							<Height>0.25in</Height>
+							<TablixCells>
+								<TablixCell>
+									<CellContents>
+										<Textbox Name="hdr1">
+											<Value>Product</Value>
+											<Style>
+												<FontWeight>Bold</FontWeight>
+												<BackgroundColor>#2980B9</BackgroundColor>
+												<Color>White</Color>
+												<TextAlign>Center</TextAlign>
+												<FontSize>8pt</FontSize>
+											</Style>
+										</Textbox>
+									</CellContents>
+								</TablixCell>
+								<TablixCell>
+									<CellContents>
+										<Textbox Name="hdr2">
+											<Value>Category</Value>
+											<Style>
+												<FontWeight>Bold</FontWeight>
+												<BackgroundColor>#2980B9</BackgroundColor>
+												<Color>White</Color>
+												<TextAlign>Center</TextAlign>
+												<FontSize>8pt</FontSize>
+											</Style>
+										</Textbox>
+									</CellContents>
+								</TablixCell>
+								<TablixCell>
+									<CellContents>
+										<Textbox Name="hdr3">
+											<Value>Current Stock</Value>
+											<Style>
+												<FontWeight>Bold</FontWeight>
+												<BackgroundColor>#2980B9</BackgroundColor>
+												<Color>White</Color>
+												<TextAlign>Center</TextAlign>
+												<FontSize>8pt</FontSize>
+											</Style>
+										</Textbox>
+									</CellContents>
+								</TablixCell>
+								<TablixCell>
+									<CellContents>
+										<Textbox Name="hdr4">
+											<Value>Low Stock Threshold</Value>
+											<Style>
+												<FontWeight>Bold</FontWeight>
+												<BackgroundColor>#2980B9</BackgroundColor>
+												<Color>White</Color>
+												<TextAlign>Center</TextAlign>
+												<FontSize>8pt</FontSize>
+											</Style>
+										</Textbox>
+									</CellContents>
+								</TablixCell>
+								<TablixCell>
+									<CellContents>
+										<Textbox Name="hdr5">
+											<Value>Total Sold</Value>
+											<Style>
+												<FontWeight>Bold</FontWeight>
+												<BackgroundColor>#2980B9</BackgroundColor>
+												<Color>White</Color>
+												<TextAlign>Center</TextAlign>
+												<FontSize>8pt</FontSize>
+											</Style>
+										</Textbox>
+									</CellContents>
+								</TablixCell>
+								<TablixCell>
+									<CellContents>
+										<Textbox Name="hdr6">
+											<Value>Total Purchased</Value>
+											<Style>
+												<FontWeight>Bold</FontWeight>
+												<BackgroundColor>#2980B9</BackgroundColor>
+												<Color>White</Color>
+												<TextAlign>Center</TextAlign>
+												<FontSize>8pt</FontSize>
+											</Style>
+										</Textbox>
+									</CellContents>
+								</TablixCell>
+								<TablixCell>
+									<CellContents>
+										<Textbox Name="hdr7">
+											<Value>Stock Status</Value>
+											<Style>
+												<FontWeight>Bold</FontWeight>
+												<BackgroundColor>#2980B9</BackgroundColor>
+												<Color>White</Color>
+												<TextAlign>Center</TextAlign>
+												<FontSize>8pt</FontSize>
+											</Style>
+										</Textbox>
+									</CellContents>
+								</TablixCell>
+							</TablixCells>
+						</TablixRow>
+						<TablixRow>
+							<Height>0.25in</Height>
+							<TablixCells>
+								<TablixCell>
+									<CellContents>
+										<Textbox Name="dat1">
+											<Value>=Fields!product_name.Value</Value>
+											<Style>
+												<FontSize>8pt</FontSize>
+											</Style>
+										</Textbox>
+									</CellContents>
+								</TablixCell>
+								<TablixCell>
+									<CellContents>
+										<Textbox Name="dat2">
+											<Value>=Fields!category_name.Value</Value>
+											<Style>
+												<FontSize>8pt</FontSize>
+												<TextAlign>Center</TextAlign>
+											</Style>
+										</Textbox>
+									</CellContents>
+								</TablixCell>
+								<TablixCell>
+									<CellContents>
+										<Textbox Name="dat3">
+											<Value>=Fields!current_stock.Value</Value>
+											<Style>
+												<FontSize>8pt</FontSize>
+												<TextAlign>Center</TextAlign>
+											</Style>
+										</Textbox>
+									</CellContents>
+								</TablixCell>
+								<TablixCell>
+									<CellContents>
+										<Textbox Name="dat4">
+											<Value>=Fields!low_stock_threshold.Value</Value>
+											<Style>
+												<FontSize>8pt</FontSize>
+												<TextAlign>Center</TextAlign>
+											</Style>
+										</Textbox>
+									</CellContents>
+								</TablixCell>
+								<TablixCell>
+									<CellContents>
+										<Textbox Name="dat5">
+											<Value>=Fields!total_sold.Value</Value>
+											<Style>
+												<FontSize>8pt</FontSize>
+												<TextAlign>Center</TextAlign>
+											</Style>
+										</Textbox>
+									</CellContents>
+								</TablixCell>
+								<TablixCell>
+									<CellContents>
+										<Textbox Name="dat6">
+											<Value>=Fields!total_purchased.Value</Value>
+											<Style>
+												<FontSize>8pt</FontSize>
+												<TextAlign>Center</TextAlign>
+											</Style>
+										</Textbox>
+									</CellContents>
+								</TablixCell>
+								<TablixCell>
+									<CellContents>
+										<Textbox Name="dat7">
+											<Value>=Fields!stock_status.Value</Value>
+											<Style>
+												<FontSize>8pt</FontSize>
+												<TextAlign>Center</TextAlign>
+											</Style>
+										</Textbox>
+									</CellContents>
+								</TablixCell>
+							</TablixCells>
+						</TablixRow>
+					</TablixRows>
+				</TablixBody>
+				<TablixColumnHierarchy>
+					<TablixMembers>
+						<TablixMember />
+						<TablixMember />
+						<TablixMember />
+						<TablixMember />
+						<TablixMember />
+						<TablixMember />
+						<TablixMember />
+					</TablixMembers>
+				</TablixColumnHierarchy>
+				<TablixRowHierarchy>
+					<TablixMembers>
+						<TablixMember>
+							<TablixHeader>
+								<Size>1in</Size>
+							</TablixHeader>
+						</TablixMember>
+						<TablixMember>
+							<Group Name="Detail" />
+						</TablixMember>
+					</TablixMembers>
+				</TablixRowHierarchy>
+				<Top>0.6in</Top>
+				<Left>0in</Left>
+				<Width>7.5in</Width>
+			</Tablix>
+		</ReportItems>
+		<Height>6in</Height>
+	</Body>
+	<Width>7.5in</Width>
+	<Page>
+		<PageWidth>11in</PageWidth>
+		<PageHeight>8.5in</PageHeight>
+		<LeftMargin>0.5in</LeftMargin>
+		<RightMargin>0.5in</RightMargin>
+		<TopMargin>1in</TopMargin>
+		<BottomMargin>1in</BottomMargin>
+	</Page>
+</Report>
